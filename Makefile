@@ -6,7 +6,7 @@
 #    By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 17:02:16 by omougel           #+#    #+#              #
-#    Updated: 2024/03/11 14:54:21 by omougel          ###   ########.fr        #
+#    Updated: 2024/03/18 12:07:30 by omougel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,13 @@
 
 NAME = fractol
 
-SRCS_FILES = fract-ol.c
+SRCS_FILES = events.c\
+			 fractol.c\
+			 init.c\
+			 math_utils.c\
+			 render.c
 
-INCLUDES = include/fract-ol.h
+INCLUDES = include/fractol.h
 
 LIBFT_DIR = libft/
 SRCS_DIR = srcs/
@@ -26,11 +30,11 @@ MLX_DIR = mlx_linux
 SRCS = $(addprefix ${SRCS_DIR},${SRCS_FILES})
 OBJS = $(patsubst %.c, ${OBJS_DIR}%.o, ${SRCS})
 
-CFLAGS = -Wall -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFT = libft/libft.a
 
-HEADER = include/pipex.h libft/include/libft.h
+HEADER = include/fractol.h libft/include/libft.h
 
 all: mlx_linux libft ${NAME}
 	@echo "${BOLD}${GREEN}${NAME} done!${END}"
