@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:18:58 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/18 12:41:43 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:57:46 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 #define RED         0xFF0000  // RGB(255, 0, 0)
 #define GREEN       0x00FF00  // RGB(0, 255, 0)
 #define BLUE        0x0000FF  // RGB(0, 0, 255)
+#define YELLOW      0xFFFF00
 #define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
 #define LIME_SHOCK      0xCCFF00  // A blinding lime
 #define NEON_ORANGE     0xFF6600  // A blazing neon orange
@@ -65,15 +66,19 @@ typedef struct s_fractal
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
+	double	julia_r;
+	double	julia_i;
 }				t_fractal;
 
 void	fractal_init(t_fractal *fractal);
 double	map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
+double	atodbl(char *s);
 t_complex sum_complex(t_complex z1, t_complex z2);
 t_complex square_complex(t_complex z);
 void	fractal_render(t_fractal *fractal);
 int  close_handler(t_fractal *fractal);
 int	key_handler(int	keysym, t_fractal *fractal);
-int	mouse_handler(int button, t_fractal *fractal);
+int	mouse_handler(int button, int x, int y, t_fractal *fractal);
+int	track_julia(int x, int y, t_fractal *fractal);
 
 #endif // !FRACTOL_H

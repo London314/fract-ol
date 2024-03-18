@@ -6,12 +6,11 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 11:39:29 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/18 12:53:25 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:57:30 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
-#include <X11/X.h>
 #include <stdio.h>
 
 int  close_handler(t_fractal *fractal)
@@ -40,20 +39,27 @@ int	key_handler(int	keysym, t_fractal *fractal)
 		fractal->iterations_definition += 10;
 	else if (keysym == XK_minus)
 		fractal->iterations_definition -= 10;
-	else if (keysym == XK_1)
-		fractal->zoom *= 0.95;
-	else if (keysym == XK_2)
-		fractal->zoom *= 1.05;
 	fractal_render(fractal);
 	return (0);
 }
 
-int	mouse_handler(int button, t_fractal *fractal)
+int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
 	if (button == Button5)
-		fractal->zoom *= 0.95;
-	else if (button == Button4)
 		fractal->zoom *= 1.05;
+	else if (button == Button4)
+		fractal->zoom *= 0.95;
 	fractal_render(fractal);
-	return 0;
+	return (0);
+}
+
+int	track_julia(int x, int y, t_fractal *fractal)
+{
+	if (!ft_strcmp(fractal->name, "julia"))
+	{
+		fractal->julia_r = map(x, -2, 2, 0, WIDTH) * fractal->zoom + fractal->shift_x;
+		fractal->julia_i = map(y, 2, -2, 0, HEIGHT) * fractal->zoom	+ fractal->shift_y;
+		fractal_render(fractal);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:43:30 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/18 11:20:31 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:48:29 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int	main(int argc, char **argv)
 		|| (argc == 4 && !ft_strcmp(argv[1], "julia")))
 	{
 		fractal.name = argv[1];
+		if (!ft_strcmp(argv[1], "julia"))
+		{
+			fractal.julia_r = atodbl(argv[2]);
+			fractal.julia_i = atodbl(argv[3]);
+		}
 		fractal_init(&fractal);
 		fractal_render(&fractal);
 		mlx_loop(fractal.mlx);

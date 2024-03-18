@@ -6,7 +6,7 @@
 #    By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 17:02:16 by omougel           #+#    #+#              #
-#    Updated: 2024/03/18 12:07:30 by omougel          ###   ########.fr        #
+#    Updated: 2024/03/18 22:47:27 by omougel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS_FILES = events.c\
 			 fractol.c\
 			 init.c\
 			 math_utils.c\
-			 render.c
+			 render.c\
+			 utils.c
 
 INCLUDES = include/fractol.h
 
@@ -30,7 +31,7 @@ MLX_DIR = mlx_linux
 SRCS = $(addprefix ${SRCS_DIR},${SRCS_FILES})
 OBJS = $(patsubst %.c, ${OBJS_DIR}%.o, ${SRCS})
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -g # -Werror
 MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFT = libft/libft.a
 
