@@ -6,7 +6,7 @@
 #    By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 17:02:16 by omougel           #+#    #+#              #
-#    Updated: 2024/03/18 22:47:27 by omougel          ###   ########.fr        #
+#    Updated: 2024/03/19 10:01:52 by omougel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ NAME = fractol
 SRCS_FILES = events.c\
 			 fractol.c\
 			 init.c\
-			 math_utils.c\
 			 render.c\
-			 utils.c
+			 fractol_utils.c
 
 INCLUDES = include/fractol.h
 
@@ -31,7 +30,7 @@ MLX_DIR = mlx_linux
 SRCS = $(addprefix ${SRCS_DIR},${SRCS_FILES})
 OBJS = $(patsubst %.c, ${OBJS_DIR}%.o, ${SRCS})
 
-CFLAGS = -Wall -Wextra -g # -Werror
+CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 LIBFT = libft/libft.a
 
@@ -52,7 +51,7 @@ mlx_linux:
 
 ${OBJS_DIR}%.o: %.c ${INCLUDES} Makefile
 	mkdir -p $(shell dirname $@)
-	cc ${CFLAGS} -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	cc ${CFLAGS} -I/usr/include -Imlx_linux -O2 -c $< -o $@
 
 clean:
 	${MAKE} -C ${LIBFT_DIR} clean

@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:43:30 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/18 22:48:29 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:09:09 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	main(int argc, char **argv)
 {
 	t_fractal	fractal;
-	if ((argc == 2 && !ft_strcmp(argv[1], "mandelbrot")) 
+
+	if ((argc == 2 && !ft_strcmp(argv[1], "mandelbrot"))
 		|| (argc == 4 && !ft_strcmp(argv[1], "julia")))
 	{
 		fractal.name = argv[1];
@@ -30,7 +31,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO); // TO DO
+		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

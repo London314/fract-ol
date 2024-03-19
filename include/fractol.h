@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:18:58 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/18 22:57:46 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:44:42 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,22 @@
 # define WIDTH	800
 # define HEIGHT	800
 
-#define BLACK       0x000000  // RGB(0, 0, 0)
-#define WHITE       0xFFFFFF  // RGB(255, 255, 255)
-#define RED         0xFF0000  // RGB(255, 0, 0)
-#define GREEN       0x00FF00  // RGB(0, 255, 0)
-#define BLUE        0x0000FF  // RGB(0, 0, 255)
-#define YELLOW      0xFFFF00
-#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
-#define LIME_SHOCK      0xCCFF00  // A blinding lime
-#define NEON_ORANGE     0xFF6600  // A blazing neon orange
-#define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
-#define AQUA_DREAM      0x33CCCC  // A bright turquoise
-#define HOT_PINK        0xFF66B2  // As the name suggests!
-#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-#define LAVA_RED        0xFF3300  // A bright, molten red
+# define BLACK 0x000000
+# define WHITE 0xFFFFFF
 
 typedef struct s_complex
 {
 	double	r;
 	double	i;
-} t_complex;
+}	t_complex;
 
 typedef struct s_img
 {
 	void	*img_ptr;
-	char	*pixels_ptr;
+	char	*pix_ptr;
 	int		bpp;
-	int		endian;
-	int		line_len;
+	int		e;
+	int		li_len;
 }				t_img;
 
 typedef struct s_fractal
@@ -70,15 +58,16 @@ typedef struct s_fractal
 	double	julia_i;
 }				t_fractal;
 
-void	fractal_init(t_fractal *fractal);
-double	map(double unscaled_num, double new_min, double new_max, double old_min, double old_max);
-double	atodbl(char *s);
-t_complex sum_complex(t_complex z1, t_complex z2);
-t_complex square_complex(t_complex z);
-void	fractal_render(t_fractal *fractal);
-int  close_handler(t_fractal *fractal);
-int	key_handler(int	keysym, t_fractal *fractal);
-int	mouse_handler(int button, int x, int y, t_fractal *fractal);
-int	track_julia(int x, int y, t_fractal *fractal);
+void		fractal_init(t_fractal *fractal);
+double		map(double unscal_num, double new_min, double new_max,
+				double old_max);
+double		atodbl(char *s);
+t_complex	sum_complex(t_complex z1, t_complex z2);
+t_complex	square_complex(t_complex z);
+void		fractal_render(t_fractal *fractal);
+int			close_handler(t_fractal *fractal);
+int			key_handler(int keysym, t_fractal *fractal);
+int			mouse_handler(int button, int x, int y, t_fractal *fractal);
+int			track_julia(int x, int y, t_fractal *fractal);
 
 #endif // !FRACTOL_H

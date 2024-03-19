@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:22:16 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/18 22:40:42 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/19 09:19:53 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 {
 	int	offset;
 
-	offset = y * img->line_len + x * (img->bpp / 8);
-	*(unsigned int *)(img->pixels_ptr + offset) = color;
+	offset = y * img->li_len + x * (img->bpp / 8);
+	*(unsigned int *)(img->pix_ptr + offset) = color;
 }
 
 static void	mandel_vs_julia(t_complex z, t_complex *c, t_fractal *fractal)
@@ -41,8 +41,8 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	int			i;
 	int			color;
 
-	z.r = map(x, -2, 2, 0, WIDTH - 1) * fractal->zoom + fractal->shift_x;
-	z.i = map(y, 2, -2, 0, HEIGHT - 1) * fractal->zoom + fractal->shift_y;
+	z.r = map(x, -2, 2, WIDTH) * fractal->zoom + fractal->shift_x;
+	z.i = map(y, 2, -2, HEIGHT) * fractal->zoom + fractal->shift_y;
 	i = 0;
 	mandel_vs_julia(z, &c, fractal);
 	while (i < fractal->iterations_definition)
@@ -50,7 +50,7 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		z = sum_complex(square_complex(z), c);
 		if (z.r * z.r + z.i * z.i > fractal->escape_value)
 		{
-			color = map(i, BLACK, WHITE, 0, fractal->iterations_definition);
+			color = map(i, BLACK, WHITE, fractal->iterations_definition);
 			my_pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
@@ -73,5 +73,6 @@ void	fractal_render(t_fractal *fractal)
 			handle_pixel(x, y, fractal);
 		}
 	}
-	mlx_put_image_to_window(fractal->mlx, fractal->mlx_win, fractal->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(fractal->mlx, fractal->mlx_win,
+		fractal->img.img_ptr, 0, 0);
 }
