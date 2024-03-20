@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:43:30 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/19 09:09:09 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/20 21:55:25 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
+		ft_putstr_fd(ERROR_MESSAGE, 2);
 		exit(EXIT_FAILURE);
 	}
 }

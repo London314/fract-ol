@@ -6,15 +6,16 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:18:58 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/19 09:44:42 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/20 22:01:23 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../libft/include/libft.h"
 # include "../mlx_linux/mlx.h"
+# include <stdlib.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -62,6 +63,10 @@ void		fractal_init(t_fractal *fractal);
 double		map(double unscal_num, double new_min, double new_max,
 				double old_max);
 double		atodbl(char *s);
+int			ft_strcmp(const char *s1, const char *s2);
+void		ft_putstr_fd(char *s, int fd);
+int			ft_isdigit(int c);
+size_t		ft_strlen(const char *s);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 t_complex	square_complex(t_complex z);
 void		fractal_render(t_fractal *fractal);
