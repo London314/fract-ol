@@ -6,7 +6,7 @@
 /*   By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:08:07 by omougel           #+#    #+#             */
-/*   Updated: 2024/03/20 22:10:24 by omougel          ###   ########.fr       */
+/*   Updated: 2024/03/21 07:00:03 by omougel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	write(fd, s, ft_strlen(s));
+	if (write(fd, s, ft_strlen(s)) == -1)
+		return ;
 }
 
 int	ft_isdigit(int c)

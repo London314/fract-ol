@@ -6,7 +6,7 @@
 #    By: omougel <omougel@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 17:02:16 by omougel           #+#    #+#              #
-#    Updated: 2024/03/20 22:12:26 by omougel          ###   ########.fr        #
+#    Updated: 2024/03/21 06:52:17 by omougel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MLX_DIR = mlx_linux
 SRCS = $(addprefix ${SRCS_DIR},${SRCS_FILES})
 OBJS = $(patsubst %.c, ${OBJS_DIR}%.o, ${SRCS})
 
-CFLAGS = -Wall -Wextra# -Werror
+CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 HEADER = include/fractol.h
